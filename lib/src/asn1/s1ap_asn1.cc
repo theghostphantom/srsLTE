@@ -21687,10 +21687,10 @@ tunnel_info_s& ho_notify_ies_o::value_c::tunnel_info_for_bbf()
   assert_choice_type("TunnelInformation", type_.to_string(), "Value");
   return c.get<tunnel_info_s>();
 }
-unbounded_octstring<true>& ho_notify_ies_o::value_c::lhn_id()
+bounded_octstring<32, 256, true>& ho_notify_ies_o::value_c::lhn_id()
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<32, 256, true> >();
 }
 const uint64_t& ho_notify_ies_o::value_c::mme_ue_s1ap_id() const
 {
@@ -21717,10 +21717,10 @@ const tunnel_info_s& ho_notify_ies_o::value_c::tunnel_info_for_bbf() const
   assert_choice_type("TunnelInformation", type_.to_string(), "Value");
   return c.get<tunnel_info_s>();
 }
-const unbounded_octstring<true>& ho_notify_ies_o::value_c::lhn_id() const
+const bounded_octstring<32, 256, true>& ho_notify_ies_o::value_c::lhn_id() const
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<32, 256, true> >();
 }
 void ho_notify_ies_o::value_c::destroy_()
 {
@@ -21735,7 +21735,7 @@ void ho_notify_ies_o::value_c::destroy_()
       c.destroy<tunnel_info_s>();
       break;
     case types::lhn_id:
-      c.destroy<unbounded_octstring<true> >();
+      c.destroy<bounded_octstring<32, 256, true> >();
       break;
     default:
       break;
@@ -21760,7 +21760,7 @@ void ho_notify_ies_o::value_c::set(types::options e)
       c.init<tunnel_info_s>();
       break;
     case types::lhn_id:
-      c.init<unbounded_octstring<true> >();
+      c.init<bounded_octstring<32, 256, true> >();
       break;
     case types::nulltype:
       break;
@@ -21788,7 +21788,7 @@ ho_notify_ies_o::value_c::value_c(const ho_notify_ies_o::value_c& other)
       c.init(other.c.get<tunnel_info_s>());
       break;
     case types::lhn_id:
-      c.init(other.c.get<unbounded_octstring<true> >());
+      c.init(other.c.get<bounded_octstring<32, 256, true> >());
       break;
     case types::nulltype:
       break;
@@ -21819,7 +21819,7 @@ ho_notify_ies_o::value_c& ho_notify_ies_o::value_c::operator=(const ho_notify_ie
       c.set(other.c.get<tunnel_info_s>());
       break;
     case types::lhn_id:
-      c.set(other.c.get<unbounded_octstring<true> >());
+      c.set(other.c.get<bounded_octstring<32, 256, true> >());
       break;
     case types::nulltype:
       break;
@@ -21852,7 +21852,7 @@ void ho_notify_ies_o::value_c::to_json(json_writer& j) const
       c.get<tunnel_info_s>().to_json(j);
       break;
     case types::lhn_id:
-      j.write_str("OCTET STRING", c.get<unbounded_octstring<true> >().to_string());
+      j.write_str("OCTET STRING", c.get<bounded_octstring<32, 256, true> >().to_string());
       break;
     default:
       log_invalid_choice_id(type_, "ho_notify_ies_o::value_c");
@@ -21879,7 +21879,7 @@ SRSASN_CODE ho_notify_ies_o::value_c::pack(bit_ref& bref) const
       HANDLE_CODE(c.get<tunnel_info_s>().pack(bref));
       break;
     case types::lhn_id:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().pack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<32, 256, true> >().pack(bref)));
       break;
     default:
       log_invalid_choice_id(type_, "ho_notify_ies_o::value_c");
@@ -21907,7 +21907,7 @@ SRSASN_CODE ho_notify_ies_o::value_c::unpack(cbit_ref& bref)
       HANDLE_CODE(c.get<tunnel_info_s>().unpack(bref));
       break;
     case types::lhn_id:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().unpack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<32, 256, true> >().unpack(bref)));
       break;
     default:
       log_invalid_choice_id(type_, "ho_notify_ies_o::value_c");
@@ -30904,10 +30904,10 @@ bounded_bitstring<1, 160, true, true>& init_ue_msg_ies_o::value_c::sipto_l_gw_tr
   assert_choice_type("BIT STRING", type_.to_string(), "Value");
   return c.get<bounded_bitstring<1, 160, true, true> >();
 }
-unbounded_octstring<true>& init_ue_msg_ies_o::value_c::lhn_id()
+bounded_octstring<32, 256, true>& init_ue_msg_ies_o::value_c::lhn_id()
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<32, 256, true> >();
 }
 fixed_octstring<2, true>& init_ue_msg_ies_o::value_c::mme_group_id()
 {
@@ -31004,10 +31004,10 @@ const bounded_bitstring<1, 160, true, true>& init_ue_msg_ies_o::value_c::sipto_l
   assert_choice_type("BIT STRING", type_.to_string(), "Value");
   return c.get<bounded_bitstring<1, 160, true, true> >();
 }
-const unbounded_octstring<true>& init_ue_msg_ies_o::value_c::lhn_id() const
+const bounded_octstring<32, 256, true>& init_ue_msg_ies_o::value_c::lhn_id() const
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<32, 256, true> >();
 }
 const fixed_octstring<2, true>& init_ue_msg_ies_o::value_c::mme_group_id() const
 {
@@ -31065,7 +31065,7 @@ void init_ue_msg_ies_o::value_c::destroy_()
       c.destroy<bounded_bitstring<1, 160, true, true> >();
       break;
     case types::lhn_id:
-      c.destroy<unbounded_octstring<true> >();
+      c.destroy<bounded_octstring<32, 256, true> >();
       break;
     case types::mme_group_id:
       c.destroy<fixed_octstring<2, true> >();
@@ -31117,7 +31117,7 @@ void init_ue_msg_ies_o::value_c::set(types::options e)
       c.init<bounded_bitstring<1, 160, true, true> >();
       break;
     case types::lhn_id:
-      c.init<unbounded_octstring<true> >();
+      c.init<bounded_octstring<32, 256, true> >();
       break;
     case types::mme_group_id:
       c.init<fixed_octstring<2, true> >();
@@ -31183,7 +31183,7 @@ init_ue_msg_ies_o::value_c::value_c(const init_ue_msg_ies_o::value_c& other)
       c.init(other.c.get<bounded_bitstring<1, 160, true, true> >());
       break;
     case types::lhn_id:
-      c.init(other.c.get<unbounded_octstring<true> >());
+      c.init(other.c.get<bounded_octstring<32, 256, true> >());
       break;
     case types::mme_group_id:
       c.init(other.c.get<fixed_octstring<2, true> >());
@@ -31256,7 +31256,7 @@ init_ue_msg_ies_o::value_c& init_ue_msg_ies_o::value_c::operator=(const init_ue_
       c.set(other.c.get<bounded_bitstring<1, 160, true, true> >());
       break;
     case types::lhn_id:
-      c.set(other.c.get<unbounded_octstring<true> >());
+      c.set(other.c.get<bounded_octstring<32, 256, true> >());
       break;
     case types::mme_group_id:
       c.set(other.c.get<fixed_octstring<2, true> >());
@@ -31333,7 +31333,7 @@ void init_ue_msg_ies_o::value_c::to_json(json_writer& j) const
       j.write_str("BIT STRING", c.get<bounded_bitstring<1, 160, true, true> >().to_string());
       break;
     case types::lhn_id:
-      j.write_str("OCTET STRING", c.get<unbounded_octstring<true> >().to_string());
+      j.write_str("OCTET STRING", c.get<bounded_octstring<32, 256, true> >().to_string());
       break;
     case types::mme_group_id:
       j.write_str("OCTET STRING", c.get<fixed_octstring<2, true> >().to_string());
@@ -31402,7 +31402,7 @@ SRSASN_CODE init_ue_msg_ies_o::value_c::pack(bit_ref& bref) const
       HANDLE_CODE((c.get<bounded_bitstring<1, 160, true, true> >().pack(bref)));
       break;
     case types::lhn_id:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().pack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<32, 256, true> >().pack(bref)));
       break;
     case types::mme_group_id:
       HANDLE_CODE((c.get<fixed_octstring<2, true> >().pack(bref)));
@@ -31472,7 +31472,7 @@ SRSASN_CODE init_ue_msg_ies_o::value_c::unpack(cbit_ref& bref)
       HANDLE_CODE((c.get<bounded_bitstring<1, 160, true, true> >().unpack(bref)));
       break;
     case types::lhn_id:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().unpack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<32, 256, true> >().unpack(bref)));
       break;
     case types::mme_group_id:
       HANDLE_CODE((c.get<fixed_octstring<2, true> >().unpack(bref)));
@@ -32819,7 +32819,7 @@ void ue_paging_id_c::destroy_()
       c.destroy<s_tmsi_s>();
       break;
     case types::imsi:
-      c.destroy<unbounded_octstring<true> >();
+      c.destroy<bounded_octstring<3, 8, true> >();
       break;
     default:
       break;
@@ -32834,7 +32834,7 @@ void ue_paging_id_c::set(types::options e)
       c.init<s_tmsi_s>();
       break;
     case types::imsi:
-      c.init<unbounded_octstring<true> >();
+      c.init<bounded_octstring<3, 8, true> >();
       break;
     case types::nulltype:
       break;
@@ -32850,7 +32850,7 @@ ue_paging_id_c::ue_paging_id_c(const ue_paging_id_c& other)
       c.init(other.c.get<s_tmsi_s>());
       break;
     case types::imsi:
-      c.init(other.c.get<unbounded_octstring<true> >());
+      c.init(other.c.get<bounded_octstring<3, 8, true> >());
       break;
     case types::nulltype:
       break;
@@ -32869,7 +32869,7 @@ ue_paging_id_c& ue_paging_id_c::operator=(const ue_paging_id_c& other)
       c.set(other.c.get<s_tmsi_s>());
       break;
     case types::imsi:
-      c.set(other.c.get<unbounded_octstring<true> >());
+      c.set(other.c.get<bounded_octstring<3, 8, true> >());
       break;
     case types::nulltype:
       break;
@@ -32888,7 +32888,7 @@ void ue_paging_id_c::to_json(json_writer& j) const
       c.get<s_tmsi_s>().to_json(j);
       break;
     case types::imsi:
-      j.write_str("iMSI", c.get<unbounded_octstring<true> >().to_string());
+      j.write_str("iMSI", c.get<bounded_octstring<3, 8, true> >().to_string());
       break;
     default:
       log_invalid_choice_id(type_, "ue_paging_id_c");
@@ -32903,7 +32903,7 @@ SRSASN_CODE ue_paging_id_c::pack(bit_ref& bref) const
       HANDLE_CODE(c.get<s_tmsi_s>().pack(bref));
       break;
     case types::imsi:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().pack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<3, 8, true> >().pack(bref)));
       break;
     default:
       log_invalid_choice_id(type_, "ue_paging_id_c");
@@ -32921,7 +32921,7 @@ SRSASN_CODE ue_paging_id_c::unpack(cbit_ref& bref)
       HANDLE_CODE(c.get<s_tmsi_s>().unpack(bref));
       break;
     case types::imsi:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().unpack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<3, 8, true> >().unpack(bref)));
       break;
     default:
       log_invalid_choice_id(type_, "ue_paging_id_c");
@@ -38661,10 +38661,10 @@ tunnel_info_s& path_switch_request_ies_o::value_c::tunnel_info_for_bbf()
   assert_choice_type("TunnelInformation", type_.to_string(), "Value");
   return c.get<tunnel_info_s>();
 }
-unbounded_octstring<true>& path_switch_request_ies_o::value_c::lhn_id()
+bounded_octstring<32, 256, true>& path_switch_request_ies_o::value_c::lhn_id()
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<32, 256, true> >();
 }
 rrc_establishment_cause_e& path_switch_request_ies_o::value_c::rrc_resume_cause()
 {
@@ -38727,10 +38727,10 @@ const tunnel_info_s& path_switch_request_ies_o::value_c::tunnel_info_for_bbf() c
   assert_choice_type("TunnelInformation", type_.to_string(), "Value");
   return c.get<tunnel_info_s>();
 }
-const unbounded_octstring<true>& path_switch_request_ies_o::value_c::lhn_id() const
+const bounded_octstring<32, 256, true>& path_switch_request_ies_o::value_c::lhn_id() const
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<32, 256, true> >();
 }
 const rrc_establishment_cause_e& path_switch_request_ies_o::value_c::rrc_resume_cause() const
 {
@@ -38762,7 +38762,7 @@ void path_switch_request_ies_o::value_c::destroy_()
       c.destroy<tunnel_info_s>();
       break;
     case types::lhn_id:
-      c.destroy<unbounded_octstring<true> >();
+      c.destroy<bounded_octstring<32, 256, true> >();
       break;
     default:
       break;
@@ -38803,7 +38803,7 @@ void path_switch_request_ies_o::value_c::set(types::options e)
       c.init<tunnel_info_s>();
       break;
     case types::lhn_id:
-      c.init<unbounded_octstring<true> >();
+      c.init<bounded_octstring<32, 256, true> >();
       break;
     case types::rrc_resume_cause:
       break;
@@ -38851,7 +38851,7 @@ path_switch_request_ies_o::value_c::value_c(const path_switch_request_ies_o::val
       c.init(other.c.get<tunnel_info_s>());
       break;
     case types::lhn_id:
-      c.init(other.c.get<unbounded_octstring<true> >());
+      c.init(other.c.get<bounded_octstring<32, 256, true> >());
       break;
     case types::rrc_resume_cause:
       c.init(other.c.get<rrc_establishment_cause_e>());
@@ -38904,7 +38904,7 @@ path_switch_request_ies_o::value_c& path_switch_request_ies_o::value_c::
       c.set(other.c.get<tunnel_info_s>());
       break;
     case types::lhn_id:
-      c.set(other.c.get<unbounded_octstring<true> >());
+      c.set(other.c.get<bounded_octstring<32, 256, true> >());
       break;
     case types::rrc_resume_cause:
       c.set(other.c.get<rrc_establishment_cause_e>());
@@ -38960,7 +38960,7 @@ void path_switch_request_ies_o::value_c::to_json(json_writer& j) const
       c.get<tunnel_info_s>().to_json(j);
       break;
     case types::lhn_id:
-      j.write_str("OCTET STRING", c.get<unbounded_octstring<true> >().to_string());
+      j.write_str("OCTET STRING", c.get<bounded_octstring<32, 256, true> >().to_string());
       break;
     case types::rrc_resume_cause:
       j.write_str("RRC-Establishment-Cause", c.get<rrc_establishment_cause_e>().to_string());
@@ -39009,7 +39009,7 @@ SRSASN_CODE path_switch_request_ies_o::value_c::pack(bit_ref& bref) const
       HANDLE_CODE(c.get<tunnel_info_s>().pack(bref));
       break;
     case types::lhn_id:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().pack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<32, 256, true> >().pack(bref)));
       break;
     case types::rrc_resume_cause:
       HANDLE_CODE(c.get<rrc_establishment_cause_e>().pack(bref));
@@ -39059,7 +39059,7 @@ SRSASN_CODE path_switch_request_ies_o::value_c::unpack(cbit_ref& bref)
       HANDLE_CODE(c.get<tunnel_info_s>().unpack(bref));
       break;
     case types::lhn_id:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().unpack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<32, 256, true> >().unpack(bref)));
       break;
     case types::rrc_resume_cause:
       HANDLE_CODE(c.get<rrc_establishment_cause_e>().unpack(bref));
@@ -46555,10 +46555,10 @@ bounded_bitstring<1, 160, true, true>& ul_nas_transport_ies_o::value_c::sipto_l_
   assert_choice_type("BIT STRING", type_.to_string(), "Value");
   return c.get<bounded_bitstring<1, 160, true, true> >();
 }
-unbounded_octstring<true>& ul_nas_transport_ies_o::value_c::lhn_id()
+bounded_octstring<32, 256, true>& ul_nas_transport_ies_o::value_c::lhn_id()
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<32, 256, true> >();
 }
 const uint64_t& ul_nas_transport_ies_o::value_c::mme_ue_s1ap_id() const
 {
@@ -46595,10 +46595,10 @@ const bounded_bitstring<1, 160, true, true>& ul_nas_transport_ies_o::value_c::si
   assert_choice_type("BIT STRING", type_.to_string(), "Value");
   return c.get<bounded_bitstring<1, 160, true, true> >();
 }
-const unbounded_octstring<true>& ul_nas_transport_ies_o::value_c::lhn_id() const
+const bounded_octstring<32, 256, true>& ul_nas_transport_ies_o::value_c::lhn_id() const
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<32, 256, true> >();
 }
 void ul_nas_transport_ies_o::value_c::destroy_()
 {
@@ -46619,7 +46619,7 @@ void ul_nas_transport_ies_o::value_c::destroy_()
       c.destroy<bounded_bitstring<1, 160, true, true> >();
       break;
     case types::lhn_id:
-      c.destroy<unbounded_octstring<true> >();
+      c.destroy<bounded_octstring<32, 256, true> >();
       break;
     default:
       break;
@@ -46650,7 +46650,7 @@ void ul_nas_transport_ies_o::value_c::set(types::options e)
       c.init<bounded_bitstring<1, 160, true, true> >();
       break;
     case types::lhn_id:
-      c.init<unbounded_octstring<true> >();
+      c.init<bounded_octstring<32, 256, true> >();
       break;
     case types::nulltype:
       break;
@@ -46684,7 +46684,7 @@ ul_nas_transport_ies_o::value_c::value_c(const ul_nas_transport_ies_o::value_c& 
       c.init(other.c.get<bounded_bitstring<1, 160, true, true> >());
       break;
     case types::lhn_id:
-      c.init(other.c.get<unbounded_octstring<true> >());
+      c.init(other.c.get<bounded_octstring<32, 256, true> >());
       break;
     case types::nulltype:
       break;
@@ -46722,7 +46722,7 @@ ul_nas_transport_ies_o::value_c& ul_nas_transport_ies_o::value_c::
       c.set(other.c.get<bounded_bitstring<1, 160, true, true> >());
       break;
     case types::lhn_id:
-      c.set(other.c.get<unbounded_octstring<true> >());
+      c.set(other.c.get<bounded_octstring<32, 256, true> >());
       break;
     case types::nulltype:
       break;
@@ -46760,7 +46760,7 @@ void ul_nas_transport_ies_o::value_c::to_json(json_writer& j) const
       j.write_str("BIT STRING", c.get<bounded_bitstring<1, 160, true, true> >().to_string());
       break;
     case types::lhn_id:
-      j.write_str("OCTET STRING", c.get<unbounded_octstring<true> >().to_string());
+      j.write_str("OCTET STRING", c.get<bounded_octstring<32, 256, true> >().to_string());
       break;
     default:
       log_invalid_choice_id(type_, "ul_nas_transport_ies_o::value_c");
@@ -46793,7 +46793,7 @@ SRSASN_CODE ul_nas_transport_ies_o::value_c::pack(bit_ref& bref) const
       HANDLE_CODE((c.get<bounded_bitstring<1, 160, true, true> >().pack(bref)));
       break;
     case types::lhn_id:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().pack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<32, 256, true> >().pack(bref)));
       break;
     default:
       log_invalid_choice_id(type_, "ul_nas_transport_ies_o::value_c");
@@ -46827,7 +46827,7 @@ SRSASN_CODE ul_nas_transport_ies_o::value_c::unpack(cbit_ref& bref)
       HANDLE_CODE((c.get<bounded_bitstring<1, 160, true, true> >().unpack(bref)));
       break;
     case types::lhn_id:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().unpack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<32, 256, true> >().unpack(bref)));
       break;
     default:
       log_invalid_choice_id(type_, "ul_nas_transport_ies_o::value_c");
@@ -47934,10 +47934,10 @@ fixed_bitstring<8, false, true>& write_replace_warning_request_ies_o::value_c::d
   assert_choice_type("BIT STRING", type_.to_string(), "Value");
   return c.get<fixed_bitstring<8, false, true> >();
 }
-unbounded_octstring<true>& write_replace_warning_request_ies_o::value_c::warning_msg_contents()
+bounded_octstring<1, 9600, true>& write_replace_warning_request_ies_o::value_c::warning_msg_contents()
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<1, 9600, true> >();
 }
 concurrent_warning_msg_ind_e& write_replace_warning_request_ies_o::value_c::concurrent_warning_msg_ind()
 {
@@ -47989,10 +47989,10 @@ const fixed_bitstring<8, false, true>& write_replace_warning_request_ies_o::valu
   assert_choice_type("BIT STRING", type_.to_string(), "Value");
   return c.get<fixed_bitstring<8, false, true> >();
 }
-const unbounded_octstring<true>& write_replace_warning_request_ies_o::value_c::warning_msg_contents() const
+const bounded_octstring<1, 9600, true>& write_replace_warning_request_ies_o::value_c::warning_msg_contents() const
 {
   assert_choice_type("OCTET STRING", type_.to_string(), "Value");
-  return c.get<unbounded_octstring<true> >();
+  return c.get<bounded_octstring<1, 9600, true> >();
 }
 const concurrent_warning_msg_ind_e& write_replace_warning_request_ies_o::value_c::concurrent_warning_msg_ind() const
 {
@@ -48021,7 +48021,7 @@ void write_replace_warning_request_ies_o::value_c::destroy_()
       c.destroy<fixed_bitstring<8, false, true> >();
       break;
     case types::warning_msg_contents:
-      c.destroy<unbounded_octstring<true> >();
+      c.destroy<bounded_octstring<1, 9600, true> >();
       break;
     default:
       break;
@@ -48057,7 +48057,7 @@ void write_replace_warning_request_ies_o::value_c::set(types::options e)
       c.init<fixed_bitstring<8, false, true> >();
       break;
     case types::warning_msg_contents:
-      c.init<unbounded_octstring<true> >();
+      c.init<bounded_octstring<1, 9600, true> >();
       break;
     case types::concurrent_warning_msg_ind:
       break;
@@ -48099,7 +48099,7 @@ write_replace_warning_request_ies_o::value_c::value_c(const write_replace_warnin
       c.init(other.c.get<fixed_bitstring<8, false, true> >());
       break;
     case types::warning_msg_contents:
-      c.init(other.c.get<unbounded_octstring<true> >());
+      c.init(other.c.get<bounded_octstring<1, 9600, true> >());
       break;
     case types::concurrent_warning_msg_ind:
       c.init(other.c.get<concurrent_warning_msg_ind_e>());
@@ -48146,7 +48146,7 @@ write_replace_warning_request_ies_o::value_c& write_replace_warning_request_ies_
       c.set(other.c.get<fixed_bitstring<8, false, true> >());
       break;
     case types::warning_msg_contents:
-      c.set(other.c.get<unbounded_octstring<true> >());
+      c.set(other.c.get<bounded_octstring<1, 9600, true> >());
       break;
     case types::concurrent_warning_msg_ind:
       c.set(other.c.get<concurrent_warning_msg_ind_e>());
@@ -48192,7 +48192,7 @@ void write_replace_warning_request_ies_o::value_c::to_json(json_writer& j) const
       j.write_str("BIT STRING", c.get<fixed_bitstring<8, false, true> >().to_string());
       break;
     case types::warning_msg_contents:
-      j.write_str("OCTET STRING", c.get<unbounded_octstring<true> >().to_string());
+      j.write_str("OCTET STRING", c.get<bounded_octstring<1, 9600, true> >().to_string());
       break;
     case types::concurrent_warning_msg_ind:
       j.write_str("ConcurrentWarningMessageIndicator", "true");
@@ -48234,7 +48234,7 @@ SRSASN_CODE write_replace_warning_request_ies_o::value_c::pack(bit_ref& bref) co
       HANDLE_CODE((c.get<fixed_bitstring<8, false, true> >().pack(bref)));
       break;
     case types::warning_msg_contents:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().pack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<1, 9600, true> >().pack(bref)));
       break;
     case types::concurrent_warning_msg_ind:
       HANDLE_CODE(c.get<concurrent_warning_msg_ind_e>().pack(bref));
@@ -48277,7 +48277,7 @@ SRSASN_CODE write_replace_warning_request_ies_o::value_c::unpack(cbit_ref& bref)
       HANDLE_CODE((c.get<fixed_bitstring<8, false, true> >().unpack(bref)));
       break;
     case types::warning_msg_contents:
-      HANDLE_CODE(c.get<unbounded_octstring<true> >().unpack(bref));
+      HANDLE_CODE((c.get<bounded_octstring<1, 9600, true> >().unpack(bref)));
       break;
     case types::concurrent_warning_msg_ind:
       HANDLE_CODE(c.get<concurrent_warning_msg_ind_e>().unpack(bref));

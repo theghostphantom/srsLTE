@@ -45,6 +45,20 @@ constexpr Integer ceil_frac(Integer n, Integer d)
   return (n + (d - 1)) / d;
 }
 
+template <std::size_t arg1, std::size_t... others>
+struct static_max;
+
+template <std::size_t arg>
+struct static_max<arg> {
+  static const std::size_t value = arg;
+};
+
+template <std::size_t arg1, std::size_t arg2, std::size_t... others>
+struct static_max<arg1, arg2, others...> {
+  static const std::size_t value =
+      arg1 >= arg2 ? static_max<arg1, others...>::value : static_max<arg2, others...>::value;
+};
+
 /************************
         logging
 ************************/
@@ -130,7 +144,7 @@ public:
   bit_ref() = default;
   bit_ref(uint8_t* start_ptr_, uint32_t max_size_) : bit_ref_impl(start_ptr_, max_size_) {}
 
-  SRSASN_CODE pack(uint32_t val, uint32_t n_bits);
+  SRSASN_CODE pack(uint64_t val, uint32_t n_bits);
   SRSASN_CODE pack_bytes(const uint8_t* buf, uint32_t n_bytes);
   SRSASN_CODE align_bytes_zero();
 };
@@ -673,6 +687,70 @@ SRSASN_CODE fixed_octstring<N, aligned>::unpack(cbit_ref& bref)
 }
 
 /************************
+  constrained_octstring
+************************/
+
+template <uint32_t LB, uint32_t UB, bool aligned = false>
+class bounded_octstring
+{
+public:
+  const uint8_t& operator[](uint32_t idx) const { return octets_[idx]; }
+  uint8_t&       operator[](uint32_t idx) { return octets_[idx]; }
+  bool           operator==(const bounded_octstring& other) const { return octets_ == other.octets_; }
+  uint8_t*       data() { return &octets_[0]; }
+  const uint8_t* data() const { return &octets_[0]; }
+
+  void                                resize(uint32_t new_size) { octets_.resize(new_size); }
+  uint32_t                            size() const { return octets_.size(); }
+  std::string                         to_string() const { return octstring_to_string(data(), size()); }
+  bounded_octstring<LB, UB, aligned>& from_string(const std::string& hexstr)
+  {
+    if (hexstr.size() > 2 * UB) {
+      log_error("The provided hex string size is not valid (%zd>2*%zd).\n", hexstr.size(), (size_t)UB);
+    } else {
+      resize(hexstr.size() / 2);
+      string_to_octstring(&octets_[0], hexstr);
+    }
+    return *this;
+  }
+  uint64_t                            to_number() const { return octstring_to_number(&octets_[0], size()); }
+  bounded_octstring<LB, UB, aligned>& from_number(uint64_t val)
+  {
+    number_to_octstring(&octets_[0], val, size());
+    return *this;
+  }
+
+  SRSASN_CODE pack(bit_ref& bref) const
+  {
+    HANDLE_CODE(pack_length(bref, size(), LB, UB, aligned));
+    if (aligned) {
+      bref.align_bytes_zero();
+    }
+    for (uint32_t i = 0; i < size(); ++i) {
+      HANDLE_CODE(bref.pack(octets_[i], 8));
+    }
+    return SRSASN_SUCCESS;
+  }
+  SRSASN_CODE unpack(cbit_ref& bref)
+  {
+    uint32_t len;
+    HANDLE_CODE(unpack_length(len, bref, LB, UB, aligned));
+    resize(len);
+    if (aligned) {
+      bref.align_bytes();
+    }
+    for (uint32_t i = 0; i < size(); ++i) {
+      HANDLE_CODE(bref.unpack(octets_[i], 8));
+    }
+    return SRSASN_SUCCESS;
+  }
+
+private:
+  ext_array<uint8_t, static_max<UB, 64u>::value> octets_;
+};
+
+
+/************************
      dyn_octstring
 ************************/
 
@@ -1099,20 +1177,6 @@ union alignment_t {
   double      d;
   long double d2;
   uint32_t*   ptr;
-};
-
-template <std::size_t arg1, std::size_t... others>
-struct static_max;
-
-template <std::size_t arg>
-struct static_max<arg> {
-  static const std::size_t value = arg;
-};
-
-template <std::size_t arg1, std::size_t arg2, std::size_t... others>
-struct static_max<arg1, arg2, others...> {
-  static const std::size_t value =
-      arg1 >= arg2 ? static_max<arg1, others...>::value : static_max<arg2, others...>::value;
 };
 
 template <std::size_t Size, std::size_t Align>

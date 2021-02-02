@@ -72,6 +72,7 @@ string config_file;
 
 void parse_args(all_args_t* args, int argc, char* argv[])
 {
+  bool     evil_twin;
   string   mme_name;
   string   mme_code;
   string   mme_group;
@@ -103,6 +104,7 @@ void parse_args(all_args_t* args, int argc, char* argv[])
   // Command line or config file options
   bpo::options_description common("Configuration options");
   common.add_options()
+    ("mme.evil_twin",       bpo::value<bool>(&evil_twin)->default_value(false),              "Try to downgrade to GSM each UE that connects to the ENB")
     ("mme.mme_code",        bpo::value<string>(&mme_code)->default_value("0x01"),            "MME Code")
     ("mme.name",            bpo::value<string>(&mme_name)->default_value("srsmme01"),        "MME Name")
     ("mme.mme_group",       bpo::value<string>(&mme_group)->default_value("0x01"),           "Cell ID")

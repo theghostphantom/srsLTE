@@ -5,6 +5,9 @@
 #####################################################################
 # MME configuration
 #
+# evil_twin:        Try to downgrade to GSM each UE that connects to the ENB
+#                   by abusing NAS TAU Reject, NAS Attach Reject
+#                   cause #2 17, RRC Connection Release + redirectedCarrierInfo
 # mme_code:         8-bit MME code identifies the MME within a group.
 # mme_group:        16-bit MME group identifier.
 # tac:              16-bit Tracking Area Code.
@@ -21,6 +24,7 @@
 #
 #####################################################################
 [mme]
+evil_twin = false
 mme_code = 0x1a
 mme_group = 0x0001
 tac = 0x0007
